@@ -1,0 +1,14 @@
+{
+  "name": "backs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "set UV_THREADPOOL_SIZE=10 & nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+ 
+}
