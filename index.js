@@ -113,28 +113,116 @@ app.listen(port,()=>{
 
 //testing ko lagi postman use gara
 
-import express from"express"
-const port =5000;
+import express from "express";
+const port = 5000;
 const app = express();
-const contacts=[{
-    "name":"rulokifs",
-    "contact":9842263522,
-    "address":"bhatapur"
-},{
-    "name":"kifs",
-    "contact":9842424242,
-    "address":"lalitpur"
-}
 
+const data = [
+    {
+
+        "name": "rulokifs",
+        "contact": 9842263522,
+        "address": "bhatapur"
+    },
+    {
+        "name": "kifs",
+        "contact": 9842424242,
+        "address": "lalitpur"
+    }
+];
+
+app.use(express.json());
+app.get('/', (req, res) => {
+   // console.log(req.query);
+   console.log(req.body);
+   // console.log(req.params);
+  return res.status(200).json(data);
+});
+
+ ////contact ko matrai hai//////////////////////////////////
+app.use((req,res,next)=>{
+  const data = req.body
+  if(data?.contact){
+    console.log('hello jee');
+    next();
+  } else{
+
+    return res.status(400).json({
+       message:"provide contact"
+    })
+   
+   } 
+  }
+);
+
+app.get('/contacts', (req, res) => {
+    // console.log(req.query);
+    
+    return res.status(200).json(data);
+});
+
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
+ 
+{/*
+  import express from "express";
+
+const port = 5000;
+
+const app = express();
+
+
+
+const data = [
+  {
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "qui sunt rem eveniet architecto"
+  },
+  {
+    "id": 2,
+    "title": "qui est esse",
+    "body": "<h1> hhello </h1>"
+  }
 ]
 
-app.get('/contacts',(req,res)=>{
-    return res.status(200).json(contacts)
-})
-
-app.listen(port,()=>{
-    console.log(`server is ok from ${port}`)
-})
 
 
+app.use(express.json());
+app.get('/', (req, res) => {
+  // console.log(req.query);
+  console.log(req.body);
+  // console.log(req.params);
+  return res.status(200).json(data);
+});
 
+
+// app.use((req, res, next) => {
+//   const data = req.body;
+//   if (data?.contact) {
+//     console.log('hello jee');
+//     next();
+//   } else {
+//     return res.status(400).json({
+//       message: 'please provide contact'
+//     });
+//   }
+
+// });
+
+app.get('/contacts', (req, res) => {
+  console.log(req.body);
+  return res.status(200).json(data);
+});
+
+
+
+
+
+app.listen(port, () => {
+  console.log('listening');
+});
+  */}
