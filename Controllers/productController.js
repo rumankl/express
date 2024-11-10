@@ -16,3 +16,6 @@ const data = [
     return res.status(200).json(data);
   }
 
+  // export const createProducts = (req, res) => {
+  //   return res.status(200).json({message:"creating products"});
+  // }
