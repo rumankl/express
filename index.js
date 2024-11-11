@@ -6,50 +6,13 @@ const port = 5000;
 
 const app = express();
 
-//const numbers = [11, 22, 33, 44, 55];
-
-
-// const func = (number) => {
-//   console.log(number + 9);
-// }
-
-// numbers.forEach(func);
-
-// numbers.forEach((a) => {
-//   func(a);
-// });
-mongoose.connect('mongodb+srv://rulokifs:mongodb@cluster0.xlryd.mongodb.net/Shops').then(val =>{
+mongoose.connect('mongodb+srv://Rabyn:moles900@cluster0.zeqhj5o.mongodb.net/Shops').then((val) => {
   app.listen(port, () => {
-    console.log('listening & connected');
+    console.log('listening and connected');
   });
-}).catch((errss) =>{
-  console.log(errss);
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}).catch((err) => {
+  console.log(err);
+});
 
 
 
@@ -57,7 +20,6 @@ mongoose.connect('mongodb+srv://rulokifs:mongodb@cluster0.xlryd.mongodb.net/Shop
 app.use(express.json());
 app.use(authRoutes);
 app.use(productRoutes);
-
 
 
 
