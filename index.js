@@ -6,7 +6,7 @@ const port = 5000;
 
 const app = express();
 
-mongoose.connect('mongodb+srv://Rabyn:moles900@cluster0.zeqhj5o.mongodb.net/Shops').then((val) => {
+mongoose.connect('mongodb+srv://rulokifs:mongodb@cluster0.xlryd.mongodb.net/Shops').then((val) => {
   app.listen(port, () => {
     console.log('listening and connected');
   });
@@ -20,6 +20,7 @@ mongoose.connect('mongodb+srv://Rabyn:moles900@cluster0.zeqhj5o.mongodb.net/Shop
 app.use(express.json());
 app.use(authRoutes);
 app.use(productRoutes);
+
 
 
 
