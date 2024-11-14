@@ -23,7 +23,8 @@ export const loginUser = async (req, res) => {
         token,
         fullname: isExist.fullname,
         email: isExist.email,
-        isAdmin: isExist.isAdmin
+        isAdmin: isExist.isAdmin,
+        message: 'user successfully logins' //add for message
       });
 
       // return res.status(200).json({ message: 'user successfully registered' });

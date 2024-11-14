@@ -21,7 +21,10 @@ const loginSchema = Joi.object({
 
 const router = express.Router();
 
-router.route('/users/log').post(validate.body(loginSchema), loginUser); //post hunu parxa  db bata taney ko lagi 
+router.route('/log').post(validate.body(loginSchema), loginUser); //post hunu parxa  db bata taney ko lagi 
 // router.route('/users/signup').post(somware, signUpUser);///somware checkker ho or to check it
-router.route('/users/signup').post(validate.body(signUpSchema), signUpUser);
+
+// router.route('/users/signup').post(validate.body(signUpSchema), signUpUser); //- /users chai hamiley index.js ko app.use('/api/users', authRoutes); haleko
+
+router.route('/signup').post(validate.body(signUpSchema), signUpUser);
 export default router;
