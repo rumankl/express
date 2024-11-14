@@ -12,6 +12,7 @@ const signUpSchema = Joi.object({
   fullname: Joi.string().min(4).max(25).required(),
   email: Joi.string().email().required(),
   password: Joi.string().min(4).max(25).required(),
+
 });
 
 const loginSchema = Joi.object({
@@ -21,7 +22,7 @@ const loginSchema = Joi.object({
 
 const router = express.Router();
 
-router.route('/log').post(validate.body(loginSchema), loginUser); //post hunu parxa  db bata taney ko lagi 
+router.route('/login').post(validate.body(loginSchema), loginUser); //post hunu parxa  db bata taney ko lagi 
 // router.route('/users/signup').post(somware, signUpUser);///somware checkker ho or to check it
 
 // router.route('/users/signup').post(validate.body(signUpSchema), signUpUser); //- /users chai hamiley index.js ko app.use('/api/users', authRoutes); haleko
