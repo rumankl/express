@@ -1,14 +1,17 @@
 import express from 'express';
 
-import { getProducts } from '../Controllers/productController.js';
+import { createProduct, getProducts, getTopProducts } from '../Controllers/productController.js';
+import { adminCheck, userCheck } from '../middleware/authCheck.js';
+import { fileCheck } from '../middleware/filecheck.js';
+
 
 const router = express.Router();
 
-router.route('/').get(getProducts);
+router.route('/').get(getProducts).post(userCheck, adminCheck,
+  fileCheck, createProduct);
 // router.route('/products/:id').get().patch().delete();
-
+router.route('/top-5-products').get(getTopProducts, getProducts);
 export default router;
-
 
 
 
