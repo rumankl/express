@@ -1,5 +1,5 @@
 import express from "express";
-import productRoutes from './routes/productRoutes.js';
+import productRoutes from './Routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload";
@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-
+app.use(express.static('uploads'));
 
 app.use(fileUpload({
   // limits: { fileSize: 5 * 1024 * 1024 },
