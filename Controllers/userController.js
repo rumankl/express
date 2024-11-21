@@ -14,6 +14,8 @@ export const loginUser = async (req, res) => {
         return res.status(401).json({ message: 'invalid credential' });
       }
 
+      //console.log(isExist);
+
       const token = jwt.sign({
         id: isExist._id,
         isAdmin: isExist.isAdmin
