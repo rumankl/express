@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createProduct, getProducts, getTopProducts, removeProduct, updateProduct } from '../Controllers/productController.js';
+import { createProduct, getProduct, getProducts, getTopProducts, removeProduct, updateProduct } from '../Controllers/productController.js';
 import { adminCheck, userCheck } from '../middleware/authCheck.js';
 import { fileCheck, updateFileCheck } from '../middleware/filecheck.js';
 
@@ -11,7 +11,9 @@ router.route('/').get(getProducts).post(userCheck, adminCheck,
   fileCheck, createProduct);
 
 router.route('/top-5-products').get(getTopProducts, getProducts);
-router.route('/:id').get().patch(userCheck, adminCheck, updateFileCheck, updateProduct).delete(removeProduct);
+
+router.route('/:id').get(getProduct).patch(userCheck, adminCheck, updateFileCheck, updateProduct).delete(removeProduct);
+
 export default router;
 
 

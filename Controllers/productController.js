@@ -67,6 +67,19 @@ export const getProducts = async (req, res) => {
 }
 
 
+export const getProduct = async (req, res) => {
+  const { id } = req.params;
+  try {
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ message: 'product not found' });
+    const product = await Product.findById(id);
+    return res.status(200).json(product);
+    // return res.status(200).json({ product }); {product } vayema product object ko vitra object hunxa 
+  } catch (err) {
+    return res.status(400).json({ message: `${err}` });
+  }
+}
+
 
 
 export const createProduct = async (req, res) => {
