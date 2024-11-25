@@ -1,6 +1,8 @@
 import express from "express";
 import productRoutes from './Routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import orderRoutes from './Routes/orderRoutes.js';
+
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload";
 const port = 5000;
@@ -17,9 +19,9 @@ app.use(fileUpload({
 }));
 
 mongoose.connect('mongodb+srv://rulokifs:mongodb@cluster0.xlryd.mongodb.net/Shops').then((val) => {
-  app.listen(port, () => {
-    console.log('listening and connected');
-  });
+  // app.listen(port, () => {
+  //   console.log('listening and connected');
+  // }); //yeta halyo pani hunsxa
 }).catch((err) => {
   console.log(err);
 });
@@ -31,7 +33,9 @@ mongoose.connect('mongodb+srv://rulokifs:mongodb@cluster0.xlryd.mongodb.net/Shop
 // app.use(productRoutes);
 app.use('/api/users', authRoutes);   ///api/users to connect endpoint + usercontroller.js ko signup or log
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
-
-
+app.listen(port, () => {
+  console.log('listening and connected');
+});
 
