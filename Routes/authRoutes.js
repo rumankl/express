@@ -1,9 +1,11 @@
 import express from 'express';
 
-import { loginUser, signUpUser } from '../Controllers/userController.js';
+import { loginUser, signUpUser, updateUser } from '../Controllers/userController.js';
 // import { somware } from '../middleware/filecheck.js';
 import Joi from 'joi';
 import validator from 'express-joi-validation';
+import { userCheck } from '../middleware/authCheck.js';
+
 
 const validate = validator.createValidator({});
 
@@ -28,4 +30,7 @@ router.route('/login').post(validate.body(loginSchema), loginUser); //post hunu 
 // router.route('/users/signup').post(validate.body(signUpSchema), signUpUser); //- /users chai hamiley index.js ko app.use('/api/users', authRoutes); haleko
 
 router.route('/signup').post(validate.body(signUpSchema), signUpUser);
+
+router.route('/update').patch(userCheck, updateUser);
+
 export default router;
