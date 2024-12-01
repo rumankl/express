@@ -1,5 +1,5 @@
 import express from 'express';
-import { addOrder, getAllOrder, getOrderUser } from '../Controllers/orderController.js';
+import { addOrder, getAllOrder, getOrderDetail, getOrderUser } from '../Controllers/orderController.js';
 import { userCheck, adminCheck } from '../middleware/authCheck.js';
 
 
@@ -10,4 +10,5 @@ router.route('/').get(userCheck, adminCheck, getAllOrder).post(userCheck, addOrd
 
 router.route('/users').get(userCheck, getOrderUser)
 
+router.route('/users/:id').get(userCheck, getOrderDetail);
 export default router;

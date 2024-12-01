@@ -1,6 +1,6 @@
 import express from "express";
 import productRoutes from './Routes/productRoutes.js';
-import authRoutes from './routes/authRoutes.js';
+import authRoutes from './Routes/authRoutes.js';
 import orderRoutes from './Routes/orderRoutes.js';
 
 import mongoose from "mongoose";

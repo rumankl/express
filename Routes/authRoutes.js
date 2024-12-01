@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { loginUser, signUpUser, updateUser } from '../Controllers/userController.js';
+import { getUserProfile, loginUser, signUpUser, updateUser } from '../Controllers/userController.js';
 // import { somware } from '../middleware/filecheck.js';
 import Joi from 'joi';
 import validator from 'express-joi-validation';
@@ -32,5 +32,7 @@ router.route('/login').post(validate.body(loginSchema), loginUser); //post hunu 
 router.route('/signup').post(validate.body(signUpSchema), signUpUser);
 
 router.route('/update').patch(userCheck, updateUser);
+
+router.route('/profile').get(userCheck, getUserProfile);
 
 export default router;
