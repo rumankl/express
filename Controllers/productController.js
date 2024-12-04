@@ -13,7 +13,7 @@ export const getTopProducts = (req, res, next) => {
 
 
 export const getProducts = async (req, res) => {
-
+  // console.log(req.cookies);
   try {
 
     // search , sort, fields, operator, limit, page , skip

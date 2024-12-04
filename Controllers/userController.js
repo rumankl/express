@@ -21,6 +21,20 @@ export const loginUser = async (req, res) => {
         isAdmin: isExist.isAdmin
       }, 'token');
 
+      res.cookie(
+        'jwt',
+        token,
+        {
+          httpOnly: true,
+          maxAge: 24 * 60 * 60 * 1000,
+          sameSite: 'None',
+          secure: true,//true for production level //falsw fordev face
+
+
+
+        }
+      );
+
       return res.status(200).json({
         token,
         // fullname: isExist.fullname,
@@ -93,6 +107,14 @@ export const getUserProfile = async (req, res) => {
     const user = await User.findById(req.id).select('fullname email');
     if (!user) return res.status(404).json({ message: 'user not found' });
     return res.status(200).json(user);
+  } catch (err) {
+    return res.status(400).json({ message: `${err}` });
+  }
+}
+export const userLogout = async (req, res) => {
+  try {
+    res.clearCookie('jwt');
+    res.status(200).json({ message: 'Logged out successfully' });
   } catch (err) {
     return res.status(400).json({ message: `${err}` });
   }
