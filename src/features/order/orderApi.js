@@ -1,19 +1,18 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "../../data/apis";
+
+import { appApi } from "../../app/appApi";
 
 
-export const orderApi = createApi({
-  reducerPath: 'orderApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+export const orderApi = appApi.injectEndpoints({
+
 
   endpoints: (builder) => ({
 
     getAllOrders: builder.query({
       query: (token) => ({
         url: '/orders',
-        headers: {
-          Authorization: token
-        },
+        // headers: {
+        //   Authorization: token
+        // },
         method: 'GET'
       }),
       providesTags: ['Order']
@@ -22,9 +21,9 @@ export const orderApi = createApi({
     getUserOrders: builder.query({
       query: (token) => ({
         url: '/orders/users',
-        headers: {
-          Authorization: token
-        },
+        // headers: {
+        //   Authorization: token
+        // },
         method: 'GET'
       }),
       providesTags: ['Order']
@@ -34,9 +33,9 @@ export const orderApi = createApi({
     getOrderDetail: builder.query({
       query: (q) => ({
         url: `/orders/users/${q.id}`,
-        headers: {
-          Authorization: q.token
-        },
+        // headers: {
+        //   Authorization: q.token
+        // },
         method: 'GET'
       }),
       providesTags: ['Order']
@@ -46,9 +45,9 @@ export const orderApi = createApi({
       query: (q) => ({
         url: '/orders',
         body: q.body,
-        headers: {
-          Authorization: q.token
-        },
+        // headers: {
+        //   Authorization: q.token
+        // },
         method: 'POST'
       }),
       invalidatesTags: ['Order']

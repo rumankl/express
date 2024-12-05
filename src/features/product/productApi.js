@@ -1,10 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "../../data/apis";
+// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+// import { baseUrl } from "../../data/apis";
+import { appApi } from "../../app/appApi";
 
 
-export const productApi = createApi({
-  reducerPath: 'productApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+// export const productApi = createApi({
+//   reducerPath: 'productApi',
+//   baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+
+
+export const productApi = appApi.injectEndpoints({
 
   endpoints: (builder) => ({
 
@@ -43,9 +47,9 @@ export const productApi = createApi({
         url: '/products',
         body: q.body,
         method: 'POST',
-        headers: {
-          Authorization: q.token
-        }
+        // headers: {
+        //   Authorization: q.token
+        // }
       }),
       invalidatesTags: ['Product']
     }),
@@ -56,9 +60,9 @@ export const productApi = createApi({
         url: `/products/${q.id}`,
         body: q.body,
         method: 'PATCH',
-        headers: {
-          Authorization: q.token
-        }
+        // headers: {
+        //   Authorization: q.token
+        // }
       }),
       invalidatesTags: ['Product']
     }),
@@ -67,9 +71,9 @@ export const productApi = createApi({
       query: (q) => ({
         url: `/products/${q.id}`,
         method: 'DELETE',
-        headers: {
-          Authorization: q.token
-        }
+        // headers: {
+        //   Authorization: q.token
+        // }
       }),
       invalidatesTags: ['Product']
     }),

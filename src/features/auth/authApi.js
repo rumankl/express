@@ -1,11 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "../../data/apis";
+
+
+import { appApi } from "../../app/appApi";
 
 
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+export const authApi = appApi.injectEndpoints({
+
   endpoints: (builder) => ({
 
     userLogin: builder.mutation({
@@ -43,10 +43,18 @@ export const authApi = createApi({
       query: (q) => ({
         url: '/users/update',
         body: q.body,
-        headers: {
-          Authorization: q.token
-        },
+        // headers: {
+        //   Authorization: q.token
+        // },// so this is for localstorage for token hit so we dont nedds beacuse we use cookies it give  token. so remove//
         method: 'PATCH'
+      }),
+      invalidatesTags: ['User']
+    }),
+
+    userLogOut: builder.mutation({
+      query: (q) => ({
+        url: '/users/logout',
+        method: 'POST'
       }),
       invalidatesTags: ['User']
     })
@@ -55,4 +63,4 @@ export const authApi = createApi({
 });
 
 
-export const { useUserLoginMutation, useUserSignUpMutation, useUserProfileQuery, useUpdateUserProfileMutation } = authApi;
+export const { useUserLoginMutation, useUserSignUpMutation, useUserProfileQuery, useUpdateUserProfileMutation, useUserLogOutMutation } = authApi;

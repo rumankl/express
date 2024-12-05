@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userLogOut } from "../features/auth/userSlice";
 import { useNavigate } from "react-router";
+import { useUserLogOutMutation } from "../features/auth/authApi";
 
 
 // user profile menu component
@@ -56,13 +57,21 @@ const adminMenuItems = [
 
 const ProfileMenu = ({ user }) => {
 
+  const [signOut, { isLoading }] = useUserLogOutMutation();
   const dispatch = useDispatch();
   const nav = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   const menus = user.isAdmin ? adminMenuItems : userMenuItems;
-
+  const signOutUser = async () => {
+    try {
+      await signOut().unwrap();
+      dispatch(userLogOut());
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -103,7 +112,8 @@ const ProfileMenu = ({ user }) => {
                     break;
 
                   case "signout":
-                    dispatch(userLogOut());
+                    // dispatch(userLogOut());
+                    signOutUser();
 
 
                     closeMenu();

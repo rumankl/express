@@ -46,7 +46,7 @@ const SignUp = () => {
         Sign Up
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
-        Nice to meet you! Enter your details to register.
+        Enter your details to register.
       </Typography>
       <form
         onSubmit={handleSubmit}

@@ -7,7 +7,7 @@ import { clearUser, getUserFromLocal, setUserToLocal } from "../../hooks/local";
 export const userSlice = createSlice({
   name: 'userSlice',
   initialState: {
-    user: getUserFromLocal()
+    user: getUserFromLocal() /// this is save in localstorage user keyname & value is getUserFromLocal
   },
 
   reducers: {

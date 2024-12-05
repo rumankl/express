@@ -45,10 +45,10 @@ const Login = () => {
   return (
     <Card color="transparent" shadow={false} className="p-4 mx-auto max-w-[350px]">
       <Typography variant="h4" color="blue-gray">
-        Login
+        Log in
       </Typography>
       <Typography color="gray" className="mt-1 font-normal">
-        Nice to meet you! Enter your details to login.
+        Enter your details to log ins.
       </Typography>
       <form
         onSubmit={handleSubmit}
